@@ -13,6 +13,14 @@ public class AdjustMO extends AbstractTable{
     fields.put("PRINCIPAL", "PRINCIPAL".toLowerCase());
     fields.put("CAP", "CAP".toLowerCase());
     fields.put("FLOOR", "FLOOR".toLowerCase());
+    
+    childClasses.add(AdjustMO.class);
   }
+
+  @Override
+  public static Integer getOrder() {
+    return 1;
+  }
+
 
 }

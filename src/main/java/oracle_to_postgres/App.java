@@ -1,29 +1,35 @@
 package oracle_to_postgres;
 
-import java.sql.SQLException;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
-import org.joda.time.DateTime;
 
 import tables.AbstractTable;
-import tables.AdjustMO;
 
 /**
  * Hello world!
  */
-public class App<T> {
+public class App {
   public static void main(String[] args) {
     try {
-      Set<Class<? extends AbstractTable>> allTables = AbstractTable.getChildClasses();
       
+      Map<Integer, List<Class<? extends AbstractTable>>> allTables = AbstractTable.getChildClasses();
       
-      AdjustMO adjustMO = new AdjustMO();
-      List<Map<String, Object>> rows = Read.read(adjustMO);
+      List<Integer> indexes = new LinkedList<Integer>(allTables.keySet());
+      Collections.sort(indexes);
+      
       Writer.openConnection();
-      Writer.write(rows, adjustMO);
-      System.out.println(rows.size());
+      
+      for(Integer index : indexes){
+        List<Class<? extends AbstractTable>> classes = allTables.get(index);
+        for(Class<? extends AbstractTable> childClass : classes){
+          AbstractTable instance = childClass.newInstance();
+          List<Map<String, Object>> rows = Read.read(instance);
+          Writer.write(rows, instance);
+        }
+      }
+      
       Writer.closeConnection();
     } catch (Exception e) {
       e.printStackTrace();

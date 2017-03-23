@@ -1,9 +1,7 @@
 package tables;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -13,8 +11,10 @@ public abstract class AbstractTable {
   protected static Map<String, String> fields = new HashMap<String, String>();
   protected static String tableNameOracle;
   protected static String tableNamePostgres;
-  
-  protected static Set<Class<? extends AbstractTable>> childClasses = new HashSet<Class<? extends AbstractTable>>();
+
+  // map transfer order to list of classes(in the same level)
+  protected static Map<Integer, List<Class<? extends AbstractTable>>> childClasses =
+      new HashMap<Integer, List<Class<? extends AbstractTable>>>();
 
   public static String getTableNameOracle() {
     return tableNameOracle;
@@ -27,25 +27,31 @@ public abstract class AbstractTable {
   public static Map<String, String> getFields() {
     return fields;
   }
-  
-  public static Set<String> getOracleFields(){
+
+  public static Set<String> getOracleFields() {
     return fields.keySet();
   }
-  
-  public static String getPostgresField(String oracleField){
+
+  public static String getPostgresField(String oracleField) {
     return fields.get(oracleField);
   }
 
-  public abstract Integer getOrder();
-  
-  public static List<Class<? extends AbstractTable>> getChildClasses(){
-    Map<Integer, List<Class<? extends AbstractTable>>> allTables = new HashMap<Integer, List<Class<? extends AbstractTable>>>();
-    
-    for(Class<? extends AbstractTable> table : childClasses){
-      List<Class<? extends AbstractTable>> indexList = allTables.get(table.getOr)
-    }
-    
-    return allTables;
+  public static Map<Integer, List<Class<? extends AbstractTable>>>
+      getChildClasses() {
+    return childClasses;
   }
- 
+
+  protected static void addChildClasses(Integer index,
+      Class<? extends AbstractTable> clazz) {
+    if (childClasses.get(index) == null) {
+      List<Class<? extends AbstractTable>> classesList = new ArrayList<Class<? extends AbstractTable>>();
+      classesList.add(clazz);
+      childClasses.put(index, classesList);
+    }
+    else
+    {
+      childClasses.get(index).add(clazz);
+    }
+  }
+
 }

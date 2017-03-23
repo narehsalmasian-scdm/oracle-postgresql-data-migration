@@ -13,6 +13,16 @@ public class AdjustMO extends AbstractTable{
     fields.put("PRINCIPAL", "PRINCIPAL".toLowerCase());
     fields.put("CAP", "CAP".toLowerCase());
     fields.put("FLOOR", "FLOOR".toLowerCase());
+    fields.put("CALLABLE", "CALLABLE".toLowerCase());
+    fields.put("MAKE_WHOLE_CAL", "MAKE_WHOLE_CAL".toLowerCase());
+    fields.put("PUTABLE", "PUTABLE".toLowerCase());
+    fields.put("EXTENDIBLE", "EXTENDIBLE".toLowerCase());
+    fields.put("EXTENDIBLE_BY_DEFAULT", "EXTENDIBLE_BY_DEFAULT".toLowerCase());
+    fields.put("SINKABLE", "SINKABLE".toLowerCase());
+    fields.put("AMORTIZING", "AMORTIZING".toLowerCase());
+    fields.put("INFLATION", "INFLATION".toLowerCase());
+    fields.put("FUNGIBLE", "FUNGIBLE".toLowerCase());
+    fields.put("LEG_ID", "LEG_ID".toLowerCase());
   }
 
 }

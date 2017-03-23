@@ -1,7 +1,5 @@
 package tables;
 
-import java.util.List;
-
 public class AdjustMO extends AbstractTable{
   static {
     tableNameOracle = "ADJUST_MO";
@@ -23,6 +21,7 @@ public class AdjustMO extends AbstractTable{
     fields.put("INFLATION", "INFLATION".toLowerCase());
     fields.put("FUNGIBLE", "FUNGIBLE".toLowerCase());
     fields.put("LEG_ID", "LEG_ID".toLowerCase());
+    addChildClasses(0, AdjustMO.class);
   }
 
 }

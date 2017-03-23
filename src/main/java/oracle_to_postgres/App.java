@@ -1,45 +1,33 @@
 package oracle_to_postgres;
 
-import java.sql.SQLException;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.joda.time.DateTime;
+import tables.AbstractTable;
 
-import tables.AdjustMO;
-import tables.CapletCore;
-
-/**
- * Hello world!
- */
-public class App<T> {
+public class App {
   public static void main(String[] args) {
-// OracleSqlReader reader = new OracleSqlReader();
-// PostGreSqlWriter writer = new PostGreSqlWriter();
-// try {
-// List<Map<String, Object>> data = reader.selectRecordsFromDbUserTable();
-// writer.write(data);
-//
-// } catch (Exception e) {
-// // TODO Auto-generated catch block
-// e.printStackTrace();
-// }
-
     try {
-      AdjustMO adjustMO = new AdjustMO();
-      List<Map<String, Object>> rows = Read.read(adjustMO);
+      
+      Map<Integer, List<Class<? extends AbstractTable>>> allTables = AbstractTable.getChildClasses();
+      
+      List<Integer> indexes = new LinkedList<Integer>(allTables.keySet());
+      Collections.sort(indexes);
+      
       Writer.openConnection();
-      Writer.write(rows, adjustMO);
-      System.out.println(rows.size());
+      
+      for(Integer index : indexes){
+        List<Class<? extends AbstractTable>> classes = allTables.get(index);
+        for(Class<? extends AbstractTable> childClass : classes){
+          AbstractTable instance = childClass.newInstance();
+          List<Map<String, Object>> rows = Read.read(instance);
+          Writer.write(rows, instance);
+        }
+      }
+      
       Writer.closeConnection();
-
-      CapletCore capletCore = new CapletCore();
-      List<Map<String, Object>> rows = Read.read(capletCore);/////?
-      Writer.openConnection();
-      Writer.write(rows, capletCore);
-      System.out.println(rows.size());
-      Writer.closeConnection();
-
     } catch (Exception e) {
       e.printStackTrace();
     }

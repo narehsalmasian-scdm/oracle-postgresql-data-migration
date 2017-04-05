@@ -1,8 +1,12 @@
 package tables;
 
-
 public class CapletTickers extends AbstractTable {
   static {
+
+    addChildClasses(1, CapletTickers.class);
+  }
+
+  public CapletTickers() {
     tableNameOracle = "CAPLET_TICKERS";
     tableNamePostgres = "caplet_tickers";
 
@@ -12,7 +16,6 @@ public class CapletTickers extends AbstractTable {
     fields.put("TICKER_NAME", "TICKER_NAME".toLowerCase());
     fields.put("TICKER_SOURCE", "TICKER_SOURCE".toLowerCase());
     fields.put("TICKER_GROUP", "TICKER_GROUP".toLowerCase());
-
   }
 
 }

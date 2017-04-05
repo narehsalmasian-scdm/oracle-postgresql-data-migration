@@ -1,10 +1,14 @@
 package tables;
 
-public class SequrityCluster extends AbstractTable {
+public class SecurityCluster extends AbstractTable {
 
   static {
-    tableNameOracle = "SEQURITY_CLUSTER";
-    tableNamePostgres = "sequrity_cluster";
+    addChildClasses(0, SecurityCluster.class);
+  }
+
+  public SecurityCluster() {
+    tableNameOracle = "SECURITY_CLUSTER";
+    tableNamePostgres = "security_cluster";
 
     fields.put("SECURITY_ID", "SECURITY_ID".toLowerCase());
     fields.put("CLUSTER_ID", "CLUSTER_ID".toLowerCase());

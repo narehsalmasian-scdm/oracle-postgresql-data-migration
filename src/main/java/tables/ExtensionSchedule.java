@@ -3,6 +3,11 @@ package tables;
 public class ExtensionSchedule extends AbstractTable {
 
   static {
+
+    addChildClasses(1, ExtensionSchedule.class);
+  }
+
+  public ExtensionSchedule() {
     tableNameOracle = "EXTENSION_SCHEDULE";
     tableNamePostgres = "extension_Schedule";
 
@@ -13,6 +18,6 @@ public class ExtensionSchedule extends AbstractTable {
     fields.put("SECURITY_VERSION", "SECURITY_VERSION".toLowerCase());
     fields.put("IS_ACTIVE", "IS_ACTIVE".toLowerCase());
     fields.put("STRIKE", "STRIKE".toLowerCase());
-
   }
+
 }

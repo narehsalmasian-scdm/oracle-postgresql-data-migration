@@ -3,6 +3,11 @@ package tables;
 public class CapletCore extends AbstractTable {
 
   static {
+    addChildClasses(0, CapletCore.class);
+
+  }
+
+  public CapletCore() {
     tableNameOracle = "CAPLET_CORE";
     tableNamePostgres = "caplet_core";
 
@@ -13,7 +18,5 @@ public class CapletCore extends AbstractTable {
     fields.put("TENOR_CODE", "TENOR_CODE".toLowerCase());
     fields.put("DISCOUNT_CURVE", "DISCOUNT_CURVE".toLowerCase());
     fields.put("FORWARD_CURVE", "FORWARD_CURVE".toLowerCase());
-
   }
-  
 }

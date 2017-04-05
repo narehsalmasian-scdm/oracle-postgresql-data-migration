@@ -7,16 +7,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import oracle.sql.TIMESTAMP;
 import tables.AbstractTable;
 
 public abstract class Read {
   private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
   private static final String DB_CONNECTION =
-      "jdbc:oracle:thin:@bundesbank-tigran.crelgvfd3i9x.eu-central-1.rds.amazonaws.com:1521:NABS";
+      "jdbc:oracle:thin:@bundesbank-taron1.crelgvfd3i9x.eu-central-1.rds.amazonaws.com:1521:NABS";
   private static final String DB_USER = "CEPHNABS1";
   private static final String DB_PASSWORD = "nabs";
 
@@ -25,44 +27,48 @@ public abstract class Read {
     dbConnection = getDBConnection();
   }
   
-  
-  public static List<Map<String, Object>> read(AbstractTable tableData) throws Exception{
-    List<Map<String, Object>> rows = new ArrayList<Map<String,Object>>();
+  //TODO : remove this
+  public static Set<String> types = new HashSet<String>();
+
+  public static List<Map<String, Object>> read(AbstractTable tableData)
+      throws Exception {
+    List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
     
 
     String fields = "";
-    
+
     Set<String> oracleFields = tableData.getOracleFields();
-    for(String field : oracleFields){
+    for (String field : oracleFields) {
       fields = fields + ", " + field;
     }
     fields = fields.replaceFirst(",", "");
-    if(fields.isEmpty()){
+    if (fields.isEmpty()) {
       return rows;
     }
-    
-    String selectTableSQL = "SELECT " + fields + " from " + tableData.getTableNameOracle();
 
-    System.out.println(selectTableSQL);
+    String selectTableSQL =
+        "SELECT " + fields + " from " + tableData.getTableNameOracle();
+
+//    System.out.println(selectTableSQL);
     Statement statement = dbConnection.createStatement();
     try {
-      
 
-      System.out.println(selectTableSQL);
+//      System.out.println(selectTableSQL);
 
       // execute select SQL stetement
       ResultSet rs = statement.executeQuery(selectTableSQL);
       // TODO delete count checking after test
       int count = 3;
-      
+
       while (rs.next() && count-- != 0) {
-        
-        Map<String, Object> row = new HashMap<String, Object>();        
-        for(String field : oracleFields){
-          row.put(field, rs.getObject(field));
+
+        Map<String, Object> row = new HashMap<String, Object>();
+        for (String field : oracleFields) {
+          Object value = rs.getObject(field);
+          row.put(field, TypeConverter.convert(value));
         }
-        
-        if(!row.isEmpty()){
+       
+        if (!row.isEmpty()) {
           rows.add(row);
         }
 
@@ -77,15 +83,10 @@ public abstract class Read {
       if (statement != null) {
         statement.close();
       }
-
-      if (dbConnection != null) {
-        dbConnection.close();
-      }
-
     }
 
     return rows;
-    
+
   }
 
   private static Connection getDBConnection() {

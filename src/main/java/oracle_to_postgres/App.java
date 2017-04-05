@@ -18,21 +18,24 @@ public class App {
   // TODO: find another way to do this
   static {
     try {
-      Class.forName("tables.AdjustMO");
-      Class.forName("tables.AiValidationResults");
-      Class.forName("tables.BacHisResults");
-//      Class.forName("tables.BacResults");
+//      Class.forName("tables.AdjustMO");
+//      Class.forName("tables.AiValidationResults");
+//      Class.forName("tables.BacHisResults");
+
+      //      Class.forName("tables.BacResults");
 //      Class.forName("tables.BbgMarketPrice");
 //      Class.forName("tables.BbgTicker");
-      Class.forName("tables.BriefInfoData");
-      Class.forName("tables.BulkCvsUpload");
-      Class.forName("tables.CalibrationMapping");
-      Class.forName("tables.CalibrationResult");
+      
+//      Class.forName("tables.BriefInfoData");
+//      Class.forName("tables.BulkCvsUpload");
+//      Class.forName("tables.CalibrationMapping");
+//      Class.forName("tables.CalibrationResult");
       Class.forName("tables.CallShedule");
-      Class.forName("tables.CapletCore");
-      Class.forName("tables.CapletTickers");
-      Class.forName("tables.ExtensionSchedule");
-      Class.forName("tables.SecurityCluster");
+      Class.forName("tables.SecurityInfo");
+//      Class.forName("tables.CapletCore");
+//      Class.forName("tables.CapletTickers");
+//      Class.forName("tables.ExtensionSchedule");
+//      Class.forName("tables.SecurityCluster");
     } catch (ClassNotFoundException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();

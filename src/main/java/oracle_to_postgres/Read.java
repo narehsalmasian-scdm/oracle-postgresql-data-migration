@@ -14,6 +14,7 @@ import java.util.Set;
 
 import oracle.sql.TIMESTAMP;
 import tables.AbstractTable;
+import tables.SecurityInfo;
 
 public abstract class Read {
   private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
@@ -59,6 +60,9 @@ public abstract class Read {
       ResultSet rs = statement.executeQuery(selectTableSQL);
       // TODO delete count checking after test
       int count = 3;
+      if(tableData instanceof SecurityInfo){
+        count = 100000;
+      }
 
       while (rs.next() && count-- != 0) {
 

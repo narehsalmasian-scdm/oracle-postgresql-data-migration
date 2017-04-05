@@ -1,0 +1,371 @@
+-- Table: public.adjust_mo
+
+-- DROP TABLE public.adjust_mo;
+
+CREATE TABLE public.adjust_mo
+(
+  id bigint NOT NULL,
+  principal double precision,
+  cap double precision,
+  floor double precision,
+  callable double precision,
+  make_whole_call double precision,
+  putable double precision,
+  extendible double precision,
+  extendible_by_default double precision,
+  sinkable double precision,
+  amortizing double precision,
+  inflation double precision,
+  fungible double precision,
+  leg_id character varying(255),
+  payment_date timestamp without time zone,
+  interest character varying(4000)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.adjust_mo
+  OWNER TO postgres;
+
+
+
+-- Table: public.ai_validation_results
+
+-- DROP TABLE public.ai_validation_results;
+
+CREATE TABLE public.ai_validation_results
+(
+  id double precision NOT NULL,
+  tp_id double precision,
+  security_id character varying(255),
+  issuer_name character varying(255),
+  diff_historic_ai double precision,
+  diff_historic_ai_p double precision,
+  current_ai double precision,
+  previous_ai double precision,
+  current_b_day timestamp(6) without time zone,
+  is_validated character(1),
+  previous_b_day timestamp(6) without time zone,
+  CONSTRAINT ai_validation_results_pkey PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.ai_validation_results
+  OWNER TO postgres;
+
+
+
+-- Table: public.bac_hist_results
+
+-- DROP TABLE public.bac_hist_results;
+
+CREATE TABLE public.bac_hist_results
+(
+  country character varying(55) NOT NULL,
+  sector character varying(255) NOT NULL,
+  curves_in_order character varying(255) NOT NULL,
+  flush_timestamp timestamp(6) without time zone NOT NULL,
+  CONSTRAINT bac_hist_results_pkey PRIMARY KEY (country, sector, flush_timestamp)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.bac_hist_results
+  OWNER TO postgres;
+
+
+
+-- Table: public.bac_results
+
+-- DROP TABLE public.bac_results;
+
+CREATE TABLE public.bac_results
+(
+  country character varying(55) NOT NULL,
+  sector character varying(55) NOT NULL,
+  curves_in_order character varying(55),
+  CONSTRAINT bac_results_pkey PRIMARY KEY (country, sector)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.bac_results
+  OWNER TO postgres;
+
+
+
+
+-- Table: public.bbg_market_price
+
+-- DROP TABLE public.bbg_market_price;
+
+CREATE TABLE public.bbg_market_price
+(
+  security_id character varying(255),
+  pricing_source_acronym character varying(50),
+  pricing_source_name character varying(100),
+  executable character(1),
+  benchmark_price character(1),
+  mp_for_entering_fep_process character(1),
+  price_type character varying(50),
+  total_score double precision,
+  category_name character varying(255),
+  bid_price double precision,
+  ask_price character varying,
+  bidask_spread_in_percent double precision,
+  bidask_score double precision,
+  source_type character varying(100),
+  source_type_score double precision,
+  bid_size double precision,
+  ask_size double precision,
+  traded_volume_in_percent double precision,
+  monthly_volume_average double precision,
+  weekly_volume_average double precision,
+  traded_volume_score double precision,
+  provider_update_date timestamp without time zone,
+  provider_processing_date timestamp without time zone,
+  elapse_time double precision,
+  elapsed_time_category character varying(255),
+  elapsed_time_category_name character varying(255),
+  elapsed_time_score double precision,
+  scored_mp character(1),
+  id bigint NOT NULL,
+  CONSTRAINT bbg_market_price_pkey PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.bbg_market_price
+  OWNER TO postgres;
+
+
+
+
+-- Table: public.bbg_ticker
+
+-- DROP TABLE public.bbg_ticker;
+
+CREATE TABLE public.bbg_ticker
+(
+  bbg_ticker character varying(255) NOT NULL,
+  bbg_group character varying(255),
+  bbg_source character varying(20),
+  resolved character(1),
+  swap_type character varying(20),
+  spot_offset bigint,
+  maturity character varying(20),
+  float_leg_freq character varying(20),
+  float_leg_dcc character varying(20),
+  float_leg_roll_conv character varying(20),
+  fix_leg_freq character varying(20),
+  fix_leg_dcc character varying(20),
+  fix_leg_roll_conv character varying(20),
+  start_offset character varying(2),
+  CONSTRAINT bbg_tricker_pkey PRIMARY KEY (bbg_ticker)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.bbg_ticker
+  OWNER TO postgres;
+
+
+
+
+-- Table: public.brief_info_data
+
+-- DROP TABLE public.brief_info_data;
+
+CREATE TABLE public.brief_info_data
+(
+  id character varying(255) NOT NULL,
+  report_file_id character varying(255),
+  as_of_date timestamp without time zone,
+  reactivated_count integer,
+  matured_count integer,
+  new_count integer,
+  updated_count integer,
+  relisted_count integer,
+  delisted_count integer,
+  total_input_count integer,
+  warning_count integer,
+  processed_count integer,
+  CONSTRAINT brief_info_data_pkey PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.brief_info_data
+  OWNER TO postgres;
+
+
+
+
+-- Table: public.bulk_csv_uploaded
+
+-- DROP TABLE public.bulk_csv_uploaded;
+
+CREATE TABLE public.bulk_csv_uploaded
+(
+  id character varying(255) NOT NULL,
+  user_id character varying(255),
+  status text,
+  upload_date timestamp without time zone,
+  CONSTRAINT bulk_csv_uploaded_pkey PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.bulk_csv_uploaded
+  OWNER TO postgres;
+
+
+
+
+-- Table: public.calibration_mapping
+
+-- DROP TABLE public.calibration_mapping;
+
+CREATE TABLE public.calibration_mapping
+(
+  index_name character varying(30) NOT NULL,
+  bbg_ticker_name character varying(20) NOT NULL,
+  formula character varying(500),
+  CONSTRAINT calibration_mapping_pkey PRIMARY KEY (index_name, bbg_ticker_name)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.calibration_mapping
+  OWNER TO postgres;
+
+
+
+-- Table: public.call_schedule
+
+-- DROP TABLE public.call_schedule;
+
+CREATE TABLE public.call_schedule
+(
+  id character varying,
+  security_id character varying,
+  call_date timestamp without time zone,
+  call_type character varying,
+  strike double precision,
+  security_version double precision,
+  is_active character(1),
+  start_date timestamp without time zone,
+  end_date timestamp without time zone
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.call_schedule
+  OWNER TO postgres;
+
+
+
+-- Table: public.caplet_core
+
+-- DROP TABLE public.caplet_core;
+
+CREATE TABLE public.caplet_core
+(
+  caplet_name character varying,
+  caplet_type character varying,
+  volatility_type character varying,
+  caplet_index character varying,
+  day_count_convention character varying,
+  tenor_code character varying,
+  discount_curve character varying,
+  forward_curve character varying
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.caplet_core
+  OWNER TO postgres;
+
+
+
+-- Table: public.caplet_tickers
+
+-- DROP TABLE public.caplet_tickers;
+
+CREATE TABLE public.caplet_tickers
+(
+  caplet_name character varying,
+  strike character varying,
+  expiry character varying,
+  ticker_name character varying,
+  ticker_source character varying,
+  ticker_group character varying
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.caplet_tickers
+  OWNER TO postgres;
+
+
+
+
+-- Table: public.extension_schedule
+
+-- DROP TABLE public.extension_schedule;
+
+CREATE TABLE public.extension_schedule
+(
+  id character varying,
+  security_id character varying,
+  ext_date timestamp without time zone,
+  ext_type character varying,
+  security_version double precision,
+  is_active character(1),
+  strike double precision
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.extension_schedule
+  OWNER TO postgres;
+
+
+
+
+-- Table: public.security_cluster
+
+-- DROP TABLE public.security_cluster;
+
+CREATE TABLE public.security_cluster
+(
+  security_id character varying,
+  cluster_id character varying,
+  country_weighting double precision,
+  issuer_weighting double precision,
+  maturity_weighting double precision
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.security_cluster
+  OWNER TO postgres;
+
+
+
+
+-- Table: public.users
+
+-- DROP TABLE public.users;
+
+CREATE TABLE public.users
+(
+  user_id character varying(40),
+  password text
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.users
+  OWNER TO postgres;

@@ -3,7 +3,7 @@ package tables;
 public class CallShedule extends AbstractTable {
 
   static {
-    addChildClasses(0, CallShedule.class);
+    addChildClasses(1, CallShedule.class);
   }
 
   public CallShedule() {

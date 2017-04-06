@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+
 import oracle.sql.TIMESTAMP;
 import tables.AbstractTable;
 import tables.SecurityInfo;
@@ -24,17 +26,18 @@ public abstract class Read {
   private static final String DB_PASSWORD = "nabs";
 
   private static Connection dbConnection = null;
+  final static Logger logger = Logger.getLogger(Read.class);
   static {
     dbConnection = getDBConnection();
   }
-  
-  //TODO : remove this
+
+  // TODO : remove this
   public static Set<String> types = new HashSet<String>();
 
   public static List<Map<String, Object>> read(AbstractTable tableData)
       throws Exception {
+
     List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
-    
 
     String fields = "";
 
@@ -47,31 +50,38 @@ public abstract class Read {
       return rows;
     }
 
+    logger.info("Reading data for " + tableData.getTableNameOracle());
+    String selectTableSQLCount = "SELECT COUNT(*) AS CC" + " from " + tableData.getTableNameOracle();
+    Statement statement = dbConnection.createStatement();
+    ResultSet rscount = statement.executeQuery(selectTableSQLCount);
+    rscount.next();
+    int countt = rscount.getInt("CC");
+    logger.info("Reading " + countt + " from table " + tableData.getTableNameOracle());
+
     String selectTableSQL =
         "SELECT " + fields + " from " + tableData.getTableNameOracle();
 
-//    System.out.println(selectTableSQL);
-    Statement statement = dbConnection.createStatement();
+    statement = dbConnection.createStatement();
     try {
 
-//      System.out.println(selectTableSQL);
 
-      // execute select SQL stetement
       ResultSet rs = statement.executeQuery(selectTableSQL);
       // TODO delete count checking after test
       int count = 3;
-      if(tableData instanceof SecurityInfo){
+      if (tableData instanceof SecurityInfo) {
         count = 100000;
       }
 
       while (rs.next() && count-- != 0) {
-
+        if(rs.getRow() % 1000 == 0){
+          logger.info("Reading row " + rs.getRow() + " from table ");
+        }
         Map<String, Object> row = new HashMap<String, Object>();
         for (String field : oracleFields) {
           Object value = rs.getObject(field);
           row.put(field, TypeConverter.convert(value));
         }
-       
+
         if (!row.isEmpty()) {
           rows.add(row);
         }

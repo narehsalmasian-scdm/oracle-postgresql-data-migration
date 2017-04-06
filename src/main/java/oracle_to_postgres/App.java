@@ -30,6 +30,7 @@ public class App {
 //      Class.forName("tables.BulkCvsUpload");
 //      Class.forName("tables.CalibrationMapping");
 //      Class.forName("tables.CalibrationResult");
+     
       Class.forName("tables.CallShedule");
       Class.forName("tables.SecurityInfo");
 //      Class.forName("tables.CapletCore");
@@ -59,17 +60,19 @@ public class App {
 
       Map<Integer, List<Class<? extends AbstractTable>>> allTables =
           AbstractTable.getChildClasses();
-
+      logger.info("Have recieved all Tables that has to be transfered");
       List<Integer> indexes = new LinkedList<Integer>(allTables.keySet());
       Collections.sort(indexes);
 
       Writer.openConnection();
-
+      logger.info("Connected to Postgresql and ready to write");
       for (Integer index : indexes) {
         List<Class<? extends AbstractTable>> classes = allTables.get(index);
         for (Class<? extends AbstractTable> childClass : classes) {
           AbstractTable instance = childClass.newInstance();
+          logger.info("Starting to read from Oracle an instance of tables");
           List<Map<String, Object>> rows = Read.read(instance);
+          logger.info("Started to write into postgres specific tables ");
           Writer.write(rows, instance);
         }
       }
@@ -83,6 +86,7 @@ public class App {
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
+      logger.info("Closing the Writer connection");
       Writer.closeConnection();
     }
 

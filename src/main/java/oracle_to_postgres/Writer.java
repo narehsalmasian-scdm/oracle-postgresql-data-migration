@@ -8,14 +8,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import tables.AbstractTable;
 
 public abstract class Writer {
+  final static Logger logger = Logger.getLogger(Writer.class);
 
   private static Connection connection = null;
 
   public static void openConnection() {
     try {
+      logger.info("PostgreSQL JDBC Driver Registered!");
       System.out.println("PostgreSQL JDBC Driver Registered!");
       connection = DriverManager.getConnection(
           "jdbc:postgresql://localhost/Test", "postgres", "nareh");
@@ -23,7 +27,7 @@ public abstract class Writer {
 // Class.forName("org.postgresql.Driver");
 
     } catch (SQLException e) {
-
+      logger.info("Connection Failed! Check output console");
       System.out.println("Connection Failed! Check output console");
       e.printStackTrace();
 
@@ -43,7 +47,9 @@ public abstract class Writer {
 
   public static void write(List<Map<String, Object>> data,
       AbstractTable tableData) throws Exception {
+    logger.info("Write proccess starting");
     for (Map<String, Object> row : data) {
+      logger.info("Inserting to table (write function)");
       String statment = "INSERT INTO " + tableData.getTableNamePostgres() + "(";
       String keys = "";
       String valuesParameter = "";

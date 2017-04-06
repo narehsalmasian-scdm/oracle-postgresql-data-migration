@@ -7,6 +7,15 @@ import java.util.Map;
 import java.util.Set;
 
 public abstract class AbstractTable {
+  static{
+    try {
+      Class.forName("tables.CallShedule");
+      Class.forName("tables.SecurityInfo");
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    }
+  }
+  
   // map oracle field to postgres field
   protected Map<String, String> fields = new HashMap<String, String>();
   protected String tableNameOracle;

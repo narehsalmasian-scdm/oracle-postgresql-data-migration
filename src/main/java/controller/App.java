@@ -1,4 +1,4 @@
-package oracle_to_postgres;
+package controller;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -8,8 +8,9 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
+import services.db.oracle.OracleReader;
+import services.db.postgres.OracleWriter;
 import tables.AbstractTable;
-import tables.AdjustMO;
 
 public class App {
   final static Logger logger = Logger.getLogger(App.class);
@@ -44,37 +45,23 @@ public class App {
 
   public static void main(String[] args) {
     try {
-// String s = "45";
-// try{
-// Integer i = Integer.parseInt(s);
-// logger.info("String parsed : " + s);
-// }
-// catch(Exception e){
-// logger.error("Cant parse string : " + s);
-// }
-//
-// if(true){
-// return;
-// }
-
-      Map<Integer, List<Class<? extends AbstractTable>>> allTables =
-          AbstractTable.getChildClasses();
+      Map<Integer, List<Class<? extends AbstractTable>>> allTables = AbstractTable.getChildClasses();
 
       List<Integer> indexes = new LinkedList<Integer>(allTables.keySet());
       Collections.sort(indexes);
 
-      Writer.openConnection();
+      OracleWriter.openConnection();
 
       for (Integer index : indexes) {
         List<Class<? extends AbstractTable>> classes = allTables.get(index);
         for (Class<? extends AbstractTable> childClass : classes) {
           AbstractTable instance = childClass.newInstance();
-          List<Map<String, Object>> rows = Read.read(instance);
-          Writer.write(rows, instance);
+          List<Map<String, Object>> rows = OracleReader.read(instance);
+          OracleWriter.write(rows, instance);
         }
       }
 
-      Set<String> types = Read.types;
+      Set<String> types = OracleReader.types;
     
       for (String type : types) {
         System.out.println(type);
@@ -83,7 +70,7 @@ public class App {
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
-      Writer.closeConnection();
+      OracleWriter.closeConnection();
     }
 
   }

@@ -1,4 +1,4 @@
-package oracle_to_postgres;
+package services.db.postgres;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,17 +10,16 @@ import java.util.Map;
 
 import tables.AbstractTable;
 
-public abstract class Writer {
+public abstract class OracleWriter {
 
   private static Connection connection = null;
 
   public static void openConnection() {
     try {
       System.out.println("PostgreSQL JDBC Driver Registered!");
-      connection = DriverManager.getConnection(
-          "jdbc:postgresql://localhost/Test", "postgres", "nareh");
+      connection = DriverManager.getConnection("jdbc:postgresql://localhost/Test", "postgres", "nareh");
 
-// Class.forName("org.postgresql.Driver");
+      // Class.forName("org.postgresql.Driver");
 
     } catch (SQLException e) {
 
@@ -41,8 +40,7 @@ public abstract class Writer {
     }
   }
 
-  public static void write(List<Map<String, Object>> data,
-      AbstractTable tableData) throws Exception {
+  public static void write(List<Map<String, Object>> data, AbstractTable tableData) throws Exception {
     for (Map<String, Object> row : data) {
       String statment = "INSERT INTO " + tableData.getTableNamePostgres() + "(";
       String keys = "";

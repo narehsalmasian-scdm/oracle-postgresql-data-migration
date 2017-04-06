@@ -1,4 +1,4 @@
-package oracle_to_postgres;
+package services.db.postgres;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

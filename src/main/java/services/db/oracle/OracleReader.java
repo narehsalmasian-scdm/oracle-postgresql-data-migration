@@ -1,4 +1,4 @@
-package oracle_to_postgres;
+package services.db.oracle;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,11 +15,11 @@ import java.util.Set;
 import oracle.sql.TIMESTAMP;
 import tables.AbstractTable;
 import tables.SecurityInfo;
+import utils.TypeConverter;
 
-public abstract class Read {
+public abstract class OracleReader {
   private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
-  private static final String DB_CONNECTION =
-      "jdbc:oracle:thin:@bundesbank-taron1.crelgvfd3i9x.eu-central-1.rds.amazonaws.com:1521:NABS";
+  private static final String DB_CONNECTION = "jdbc:oracle:thin:@bundesbank-taron1.crelgvfd3i9x.eu-central-1.rds.amazonaws.com:1521:NABS";
   private static final String DB_USER = "CEPHNABS1";
   private static final String DB_PASSWORD = "nabs";
 
@@ -27,14 +27,12 @@ public abstract class Read {
   static {
     dbConnection = getDBConnection();
   }
-  
-  //TODO : remove this
+
+  // TODO : remove this
   public static Set<String> types = new HashSet<String>();
 
-  public static List<Map<String, Object>> read(AbstractTable tableData)
-      throws Exception {
+  public static List<Map<String, Object>> read(AbstractTable tableData) throws Exception {
     List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
-    
 
     String fields = "";
 
@@ -47,20 +45,19 @@ public abstract class Read {
       return rows;
     }
 
-    String selectTableSQL =
-        "SELECT " + fields + " from " + tableData.getTableNameOracle();
+    String selectTableSQL = "SELECT " + fields + " from " + tableData.getTableNameOracle();
 
-//    System.out.println(selectTableSQL);
+    // System.out.println(selectTableSQL);
     Statement statement = dbConnection.createStatement();
     try {
 
-//      System.out.println(selectTableSQL);
+      // System.out.println(selectTableSQL);
 
       // execute select SQL stetement
       ResultSet rs = statement.executeQuery(selectTableSQL);
       // TODO delete count checking after test
       int count = 3;
-      if(tableData instanceof SecurityInfo){
+      if (tableData instanceof SecurityInfo) {
         count = 100000;
       }
 
@@ -71,7 +68,7 @@ public abstract class Read {
           Object value = rs.getObject(field);
           row.put(field, TypeConverter.convert(value));
         }
-       
+
         if (!row.isEmpty()) {
           rows.add(row);
         }
@@ -109,8 +106,7 @@ public abstract class Read {
 
     try {
 
-      dbConnection =
-          DriverManager.getConnection(DB_CONNECTION, DB_USER, DB_PASSWORD);
+      dbConnection = DriverManager.getConnection(DB_CONNECTION, DB_USER, DB_PASSWORD);
       return dbConnection;
 
     } catch (SQLException e) {

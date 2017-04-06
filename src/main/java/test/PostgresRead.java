@@ -1,4 +1,4 @@
-package oracle_to_postgres.test;
+package test;
 
 import java.sql.Connection;
 import java.sql.Date;

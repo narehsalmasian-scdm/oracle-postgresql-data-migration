@@ -1,4 +1,4 @@
-package oracle_to_postgres;
+package utils;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;

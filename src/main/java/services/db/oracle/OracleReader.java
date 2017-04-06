@@ -1,4 +1,4 @@
-package oracle_to_postgres;
+package services.db.oracle;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,27 +17,26 @@ import org.apache.log4j.Logger;
 import oracle.sql.TIMESTAMP;
 import tables.AbstractTable;
 import tables.SecurityInfo;
+import utils.TypeConverter;
 
-public abstract class Read {
+public abstract class OracleReader {
   private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
-  private static final String DB_CONNECTION =
-      "jdbc:oracle:thin:@bundesbank-taron1.crelgvfd3i9x.eu-central-1.rds.amazonaws.com:1521:NABS";
+  private static final String DB_CONNECTION = "jdbc:oracle:thin:@bundesbank-taron1.crelgvfd3i9x.eu-central-1.rds.amazonaws.com:1521:NABS";
   private static final String DB_USER = "CEPHNABS1";
   private static final String DB_PASSWORD = "nabs";
 
   private static Connection dbConnection = null;
-  final static Logger logger = Logger.getLogger(Read.class);
+  final static Logger logger = Logger.getLogger(OracleReader.class);
   static {
     dbConnection = getDBConnection();
   }
-
-  // TODO : remove this
+  
+  //TODO : remove this
   public static Set<String> types = new HashSet<String>();
 
-  public static List<Map<String, Object>> read(AbstractTable tableData)
-      throws Exception {
-
+  public static List<Map<String, Object>> read(AbstractTable tableData) throws Exception {
     List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+    
 
     String fields = "";
 
@@ -64,7 +63,9 @@ public abstract class Read {
     statement = dbConnection.createStatement();
     try {
 
+//      System.out.println(selectTableSQL);
 
+      // execute select SQL stetement
       ResultSet rs = statement.executeQuery(selectTableSQL);
       // TODO delete count checking after test
       int count = 3;
@@ -81,7 +82,7 @@ public abstract class Read {
           Object value = rs.getObject(field);
           row.put(field, TypeConverter.convert(value));
         }
-
+       
         if (!row.isEmpty()) {
           rows.add(row);
         }

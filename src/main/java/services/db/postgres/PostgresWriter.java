@@ -1,4 +1,4 @@
-package oracle_to_postgres;
+package services.db.postgres;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,8 +12,8 @@ import org.apache.log4j.Logger;
 
 import tables.AbstractTable;
 
-public abstract class Writer {
-  final static Logger logger = Logger.getLogger(Writer.class);
+public abstract class PostgresWriter {
+final static Logger logger = Logger.getLogger(PostgresWriter.class);
 
   private static Connection connection = null;
 
@@ -21,10 +21,9 @@ public abstract class Writer {
     try {
       logger.info("PostgreSQL JDBC Driver Registered!");
       System.out.println("PostgreSQL JDBC Driver Registered!");
-      connection = DriverManager.getConnection(
-          "jdbc:postgresql://localhost/Test", "postgres", "nareh");
+      connection = DriverManager.getConnection("jdbc:postgresql://localhost/Test", "postgres", "nareh");
 
-// Class.forName("org.postgresql.Driver");
+      // Class.forName("org.postgresql.Driver");
 
     } catch (SQLException e) {
       logger.info("Connection Failed! Check output console");
@@ -45,8 +44,7 @@ public abstract class Writer {
     }
   }
 
-  public static void write(List<Map<String, Object>> data,
-      AbstractTable tableData) throws Exception {
+  public static void write(List<Map<String, Object>> data, AbstractTable tableData) throws Exception {
     logger.info("Write proccess starting");
     for (Map<String, Object> row : data) {
       logger.info("Inserting to table (write function)");

@@ -1,0 +1,52 @@
+<html>
+<head>
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+</head>
+
+<body>  
+
+<button id="ajax">ajax call</button>
+<button id="json">json</button>
+
+<script type="text/javascript">
+    $('#json').click(function(){ 
+        alert('json');
+         $.getJSON("http://localhost:8080/rest/tables/count",
+         function(data) {
+            alert(data);         
+          });   
+    });
+
+    $('#ajax').click(function(){ 
+        alert('ajax');
+        debugger;
+         $.ajax({ 
+             type: "GET",
+             dataType: "json",
+             contentType: "application/json;charset=utf-8",
+             url: "http://localhost:8080/rest/tables/count",
+             success: function(data){        
+                debugger;
+                alert(data);
+             },
+             error: function(ts) { debugger;alert(ts.responseText) }
+         });
+    });
+
+    // $(document).ready(function() {
+    //     $.ajax({
+    //         url: "http://rest-service.guides.spring.io/greeting"
+    //     }).then(function(data) {
+    //        alert(data)
+    //        $('.greeting-id').append(data.id);
+    //        $('.greeting-content').append(data.content);
+    //     });
+    // });
+
+</script>
+
+
+
+</body>
+
+</html>

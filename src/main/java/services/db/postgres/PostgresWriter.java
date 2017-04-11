@@ -13,15 +13,28 @@ import org.apache.log4j.Logger;
 import tables.AbstractTable;
 
 public abstract class PostgresWriter {
-final static Logger logger = Logger.getLogger(PostgresWriter.class);
+  final static Logger logger = Logger.getLogger(PostgresWriter.class);
 
   private static Connection connection = null;
+
+  private static boolean exist(AbstractTable table) {
+    try {
+      String existingQuery =
+          "SELECT 1 FROM " + table.getTableNamePostgres();
+      PreparedStatement pst = connection.prepareStatement(existingQuery);
+      pst.execute();
+      return true;
+    } catch (Exception e) {
+      return false;
+    }
+  }
 
   public static void openConnection() {
     try {
       logger.info("PostgreSQL JDBC Driver Registered!");
       System.out.println("PostgreSQL JDBC Driver Registered!");
-      connection = DriverManager.getConnection("jdbc:postgresql://localhost/Test", "postgres", "nareh");
+      connection = DriverManager.getConnection(
+          "jdbc:postgresql://localhost/Test", "postgres", "nareh");
 
       // Class.forName("org.postgresql.Driver");
 
@@ -31,6 +44,29 @@ final static Logger logger = Logger.getLogger(PostgresWriter.class);
       e.printStackTrace();
 
     }
+  }
+
+  public static boolean createTable(AbstractTable table, boolean overrideIfExists) {
+    try {
+      String tableQuery = table.getTableCreaterQuery();
+      boolean tableExists = exist(table);
+      if (!tableExists) {
+        PreparedStatement pst = connection.prepareStatement(tableQuery);
+        return pst.execute();
+      } else if(overrideIfExists){
+        String drop = " DROP TABLE " + table.getTableNamePostgres();
+        PreparedStatement pst = connection.prepareStatement(drop);
+        pst.execute();
+        pst = connection.prepareStatement(tableQuery);
+        return pst.execute();
+      } else {
+        return true;
+      }
+    } catch (Exception e) {
+      logger.info("Failed to create table in postgresql");
+    }
+    return false;
+
   }
 
   public static void closeConnection() {
@@ -44,7 +80,8 @@ final static Logger logger = Logger.getLogger(PostgresWriter.class);
     }
   }
 
-  public static void write(List<Map<String, Object>> data, AbstractTable tableData) throws Exception {
+  public static void write(List<Map<String, Object>> data,
+      AbstractTable tableData) throws Exception {
     logger.info("Write proccess starting");
     for (Map<String, Object> row : data) {
       logger.info("Inserting to table (write function)");

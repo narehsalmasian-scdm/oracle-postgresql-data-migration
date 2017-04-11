@@ -19,6 +19,7 @@ import tables.AbstractTable;
 import tables.SecurityInfo;
 import utils.TypeConverter;
 
+
 public abstract class OracleReader {
   private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
   private static final String DB_CONNECTION = "jdbc:oracle:thin:@bundesbank-taron1.crelgvfd3i9x.eu-central-1.rds.amazonaws.com:1521:NABS";

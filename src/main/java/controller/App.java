@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,6 +12,8 @@ import org.apache.log4j.Logger;
 import services.db.oracle.OracleReader;
 import services.db.postgres.PostgresWriter;
 import tables.AbstractTable;
+import test.MyArray;
+import test.Test;
 
 public class App {
   final static Logger logger = Logger.getLogger(App.class);
@@ -45,6 +48,8 @@ public class App {
   }
 
   public static void main(String[] args) {
+    
+    
     try {
       Map<Integer, List<Class<? extends AbstractTable>>> allTables =
           AbstractTable.getChildClasses();

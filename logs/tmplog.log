@@ -4672,3 +4672,59 @@
 2017-04-05 18:43:13 INFO  Read:59 - Reading 53958 from table SECURITY_INFO
 2017-04-05 18:43:20 INFO  Read:77 - Reading row 1000 from table 
 2017-04-05 18:43:26 INFO  Read:77 - Reading row 2000 from table 
+2017-04-10 17:16:46 INFO  App:51 - Have recieved all Tables that has to be transfered
+2017-04-10 17:16:46 INFO  PostgresWriter:22 - PostgreSQL JDBC Driver Registered!
+2017-04-10 17:16:46 INFO  App:56 - Connected to Postgresql and ready to write
+2017-04-10 17:16:46 INFO  App:61 - Starting to read from Oracle an instance of tables
+2017-04-10 17:16:46 INFO  PostgresWriter:44 - Failed to create table in postgresql
+2017-04-10 17:16:46 INFO  App:61 - Starting to read from Oracle an instance of tables
+2017-04-10 17:16:46 INFO  PostgresWriter:44 - Failed to create table in postgresql
+2017-04-10 17:16:47 INFO  App:81 - Closing the Writer connection
+2017-04-10 17:17:46 INFO  App:51 - Have recieved all Tables that has to be transfered
+2017-04-10 17:17:46 INFO  PostgresWriter:22 - PostgreSQL JDBC Driver Registered!
+2017-04-10 17:17:47 INFO  App:56 - Connected to Postgresql and ready to write
+2017-04-10 17:17:47 INFO  App:61 - Starting to read from Oracle an instance of tables
+2017-04-10 17:18:01 INFO  App:51 - Have recieved all Tables that has to be transfered
+2017-04-10 17:18:01 INFO  PostgresWriter:22 - PostgreSQL JDBC Driver Registered!
+2017-04-10 17:18:01 INFO  App:56 - Connected to Postgresql and ready to write
+2017-04-10 17:18:01 INFO  App:61 - Starting to read from Oracle an instance of tables
+2017-04-10 17:18:50 INFO  App:51 - Have recieved all Tables that has to be transfered
+2017-04-10 17:18:50 INFO  PostgresWriter:22 - PostgreSQL JDBC Driver Registered!
+2017-04-10 17:18:51 INFO  App:56 - Connected to Postgresql and ready to write
+2017-04-10 17:18:51 INFO  App:61 - Starting to read from Oracle an instance of tables
+2017-04-10 17:19:09 INFO  App:51 - Have recieved all Tables that has to be transfered
+2017-04-10 17:19:09 INFO  PostgresWriter:22 - PostgreSQL JDBC Driver Registered!
+2017-04-10 17:19:09 INFO  App:56 - Connected to Postgresql and ready to write
+2017-04-10 17:19:09 INFO  App:61 - Starting to read from Oracle an instance of tables
+2017-04-10 17:19:55 INFO  App:51 - Have recieved all Tables that has to be transfered
+2017-04-10 17:19:55 INFO  PostgresWriter:22 - PostgreSQL JDBC Driver Registered!
+2017-04-10 17:19:55 INFO  App:56 - Connected to Postgresql and ready to write
+2017-04-10 17:19:55 INFO  App:61 - Starting to read from Oracle an instance of tables
+2017-04-10 17:20:21 INFO  App:51 - Have recieved all Tables that has to be transfered
+2017-04-10 17:20:21 INFO  PostgresWriter:22 - PostgreSQL JDBC Driver Registered!
+2017-04-10 17:20:21 INFO  App:56 - Connected to Postgresql and ready to write
+2017-04-10 17:20:21 INFO  App:61 - Starting to read from Oracle an instance of tables
+2017-04-10 17:20:22 INFO  App:61 - Starting to read from Oracle an instance of tables
+2017-04-10 17:20:31 INFO  App:51 - Have recieved all Tables that has to be transfered
+2017-04-10 17:20:31 INFO  PostgresWriter:22 - PostgreSQL JDBC Driver Registered!
+2017-04-10 17:20:32 INFO  App:56 - Connected to Postgresql and ready to write
+2017-04-10 17:20:32 INFO  App:61 - Starting to read from Oracle an instance of tables
+2017-04-10 17:21:13 INFO  App:51 - Have recieved all Tables that has to be transfered
+2017-04-10 17:21:13 INFO  PostgresWriter:22 - PostgreSQL JDBC Driver Registered!
+2017-04-10 17:21:13 INFO  App:56 - Connected to Postgresql and ready to write
+2017-04-10 17:21:13 INFO  App:61 - Starting to read from Oracle an instance of tables
+2017-04-10 18:15:16 INFO  App:51 - Have recieved all Tables that has to be transfered
+2017-04-10 18:15:16 INFO  PostgresWriter:34 - PostgreSQL JDBC Driver Registered!
+2017-04-10 18:15:17 INFO  App:56 - Connected to Postgresql and ready to write
+2017-04-10 18:15:17 INFO  App:61 - Starting to read from Oracle an instance of tables
+2017-04-10 18:15:18 INFO  App:81 - Closing the Writer connection
+2017-04-10 18:18:14 INFO  App:51 - Have recieved all Tables that has to be transfered
+2017-04-10 18:18:14 INFO  PostgresWriter:34 - PostgreSQL JDBC Driver Registered!
+2017-04-10 18:18:14 INFO  App:56 - Connected to Postgresql and ready to write
+2017-04-10 18:18:14 INFO  App:61 - Starting to read from Oracle an instance of tables
+2017-04-10 18:18:16 INFO  App:81 - Closing the Writer connection
+2017-04-10 18:18:43 INFO  App:51 - Have recieved all Tables that has to be transfered
+2017-04-10 18:18:43 INFO  PostgresWriter:34 - PostgreSQL JDBC Driver Registered!
+2017-04-10 18:18:43 INFO  App:56 - Connected to Postgresql and ready to write
+2017-04-10 18:18:43 INFO  App:61 - Starting to read from Oracle an instance of tables
+2017-04-10 18:18:44 INFO  App:81 - Closing the Writer connection

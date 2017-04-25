@@ -10,6 +10,25 @@ public class ForwardCurve extends AbstractTable {
   public ForwardCurve() {
     tableNameOracle = "FORWARD_CURVE";
     tableNamePostgres = "forward_curve";
+    
+    tableCreaterQuery = "CREATE TABLE" + "public.forward_curve" + "(" +
+        "   index_name character varying NOT NULL," +
+        "  curve_type character varying," +
+        "   forward_type character varying," +
+        "   object character varying," +
+        "   nss_day_count_conversion character varying," +
+        "    index_day_count_convention character varying," +
+        "  tenor double precision," +
+        
+         "   tenor_code character varying," +
+         " spot_offset double precision," +
+         "  fixing_offset double precision," +
+         "  currency character varying," +
+         "   is_fake character(1)," +
+         " CONSTRAINT forward_curve_pkey PRIMARY KEY (index_name)"+
+        ")"
+        + "WITH (OIDS=FALSE);"
+        + "ALTER TABLE public.forward_curve OWNER TO postgres;" + ";";
 
     fields.put("INDEX_NAME", "INDEX_NAME".toLowerCase());
     fields.put("CURVE_TYPE", "CURVE_TYPE".toLowerCase());

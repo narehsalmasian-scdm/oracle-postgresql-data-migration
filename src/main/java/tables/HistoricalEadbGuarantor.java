@@ -10,6 +10,24 @@ public class HistoricalEadbGuarantor extends AbstractTable {
   public HistoricalEadbGuarantor() {
     tableNameOracle = "HISTORICAL_EADB_GUARANTOR";
     tableNamePostgres = "historical_eadb_guarantor";
+    
+    tableCreaterQuery = "CREATE TABLE" + "public.historical_eadb_guarantor" + "(" +
+        "   id character varying," +
+        "   eadb_id character varying NOT NULL," +
+        "   as_of_date timestamp without time zone," +
+        "   lt_guarantor_rating character varying," +
+        " lt_guarantor_rating_date timestamp without time zone," +
+        "  code character varying," +
+        "   guarantor_name character varying," +
+        "   other_name character varying," +
+        " residence character varying," +
+        " guarantor_group character varying," +
+        "  pse character varying," +
+       
+        "CONSTRAINT historical_eadb_guarantor_pkey PRIMARY KEY (eadb_id)"+
+        ")"
+        + "WITH (OIDS=FALSE);"
+        + "ALTER TABLE public.historical_eadb_guarantor OWNER TO postgres;" + ";";
 
     fields.put("ID", "ID".toLowerCase());
     fields.put("EADB_ID", "EADB_ID".toLowerCase());

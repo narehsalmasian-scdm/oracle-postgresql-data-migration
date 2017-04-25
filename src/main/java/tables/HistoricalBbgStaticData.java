@@ -10,6 +10,117 @@ public class HistoricalBbgStaticData  extends AbstractTable {
   public HistoricalBbgStaticData() {
     tableNameOracle = "HISTORICAL_BBG_STATIC_DATA";
     tableNamePostgres = "historical_bbg_static_data";
+    
+    
+    tableCreaterQuery = "CREATE TABLE" + "public.historical_bbg_static_data" + "(" +
+        "   id character varying NOT NULL," +
+        "   isin character varying," +
+        "   as_of_date timestamp without time zone," +
+        "   id_isin2 character varying," +
+        "    id_cusip character varying," +
+        "    called character varying," +
+        "   called_dt timestamp without time zone," +
+        "  nxt_call_dt timestamp without time zone," +
+        "  first_cpn_dt timestamp without time zone," +
+        "   amt_issued double precision," +
+        "   amt_outstanding double precision," +
+        "    issue_dt timestamp without time zone," +
+        "   issue_px double precision," +
+        "  des_notes character varying," +
+        " trade_crncy character varying," +
+        " crncy character varying," +
+        "  maturity timestamp without time zone," +
+        "  final_maturity timestamp without time zone," +
+        "   calendar_code character varying," +
+        "   flt_cpn_convention character varying," +
+        "   first_cpn_period_typ character varying," +
+        "   last_cpn_period_typ character varying," +
+        "   asset_name character varying," +
+        "  cpn_cap character varying," +
+        "  cpn_floor character varying," +
+        "  callable character varying," +
+        "  putable character varying," +
+        "  extendible character varying," +
+        " sinkable character varying," +
+        " ddis_currency character varying," +
+        " day_cnt_des character varying," +
+        "  cpn_freq double precision," +
+        " sinking_fund_factor double precision," +
+        "  most_recent_reported_factor double precision," +
+        "  flt_days_prior double precision," +
+        "  flt_pay_day character varying," +
+        "   ex_div_days double precision," +
+        "    cpn_rate_fix_meth character varying," +
+        "    paying_index_set_at_end character varying," +
+        "   redemp_val double precision," +
+        "   multi_cpn_schedule double precision," +
+        "  structured_note_cpn_formula double precision," +
+        "   collat_typ character varying," +
+        "  payment_rank character varying," +
+        "   make_whole_call character varying," +
+        "  inflation_linked_indicator character varying," +
+        "   coupon double precision," +
+        "    basic_spread double precision," +
+        "    reset_idx character varying," +
+        "    flt_bench_multiplier double precision," +
+        "   cntry_of_risk character varying," +
+        "    calc_typ_des character varying," +
+        "    int_acc_dt timestamp without time zone," +
+        "    strip_type character varying," +
+        "     base_cpi double precision," +
+        "   interpolation_for_coupon_calc character varying," +
+        "    inflation_linker_category character varying," +
+        "    dual_crncy character varying," +
+        "   redemp_crncy character varying," +
+        "    cpn_crncy character varying," +
+        "    inflation_lag double precision," +
+        "    error_code character varying," +
+        "    data text," +
+        "   cpn_type character varying," +
+
+        "    cpn_type_mapped character varying," +
+        "      funge_cusip character varying," +
+        "     issuer_ultimate_parent_name character varying," +
+        "    issuer_ultimate_parent_id character varying," +
+        "   issuer_parent_name character varying," +
+        "   issuer_parent_id character varying," +
+        "    put_type character varying," +
+        "   call_type character varying," +
+        "     issuer character varying," +
+        "    calc_typ double precision," +
+        "    bond_to_eqy_ticker character varying," +
+        "   call_days_notice double precision," +
+        "     coupon_conventions character varying," +
+        "     coupon_as_of_date timestamp without time zone," +
+        "    ex_div_calendar character varying," +
+        "    flt_pay_holiday_cdr character varying," +
+        "   guarantor character varying," +
+        "    guarantors_list character varying," +
+        "    guaranty_level character varying," +
+        "   issuer_id character varying," +
+        "    guarantor_id character varying," +
+        "    idx_ratio character varying," +
+        "  is_still_callable character varying," +
+        "   issuer_industry character varying," +
+        "   mty_type character varying," +
+        "    multi_coupon_schedule_type character varying," +
+        "    next_coupon_date character varying," +
+
+        "    parent_obligor_id character varying," +
+        "   parent_ticker character varying," +
+        "    previous_coupon_date character varying," +
+        "      put_days_notice character varying," +
+        
+        "    reference_cpi character varying," +
+        "      reference_index character varying," +
+        "     structired_note character varying," +
+        "      str_note_cpn_formula_json character varying," +
+        "       sink_schedule_amt_typ character varying," +
+        "CONSTRAINT historical_bbg_static_data_pkey PRIMARY KEY (id)"+
+        ")"
+        + "WITH (OIDS=FALSE);"
+        + "ALTER TABLE public.historical_bbg_static_data OWNER TO postgres;" + ";";
+    
 
     fields.put("ID", "ID".toLowerCase());
     fields.put("ISIN", "ISIN".toLowerCase());

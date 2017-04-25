@@ -1,16 +1,16 @@
 package tables;
 
-public class DiscountClusterIdNN extends  AbstractTable {
+public class DiscountClusterWithoutEC extends  AbstractTable {
 
   static {
     addChildClasses(0, DiscountClusterIdNN.class);
   }
 
-  public DiscountClusterIdNN() {
-    tableNameOracle = "DISCOUNT_CLUSTER";
-    tableNamePostgres = "discount_cluster";
+  public DiscountClusterWithoutEC() {
+    tableNameOracle = "DISCOUNT_CLUSTER_WITHOUT_EC";
+    tableNamePostgres = "discount_cluster_without_ec";
     
-    tableCreaterQuery = "CREATE TABLE" + "public.discount_cluster" + "(" +
+    tableCreaterQuery = "CREATE TABLE" + "discount_cluster_without_ec" + "(" +
         "  id character varying NOT NULL," +
         "  as_of_date timestamp without time zone," +
         "  name character varying," +
@@ -21,10 +21,10 @@ public class DiscountClusterIdNN extends  AbstractTable {
         "   b3 double precision," +
         "   bl0 double precision," +
         "   bl1 double precision," +
-        " CONSTRAINT discount_cluster_pkey PRIMARY KEY (id)"+
+        " CONSTRAINT discount_cluster_without_ec_pkey PRIMARY KEY (id)"+
         ")"
         + "WITH (OIDS=FALSE);"
-        + "ALTER TABLE public.discount_cluster OWNER TO postgres;" + ";";
+        + "ALTER TABLE public.discount_cluster_without_ec OWNER TO postgres;" + ";";
 
     fields.put("ID", "ID".toLowerCase());
     fields.put("AS_OF_DATE", "AS_OF_DATE".toLowerCase());

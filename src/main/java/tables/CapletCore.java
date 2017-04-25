@@ -10,6 +10,19 @@ public class CapletCore extends AbstractTable {
   public CapletCore() {
     tableNameOracle = "CAPLET_CORE";
     tableNamePostgres = "caplet_core";
+    
+    tableCreaterQuery = "CREATE TABLE" + "public.caplet_core" + "(" +
+        " caplet_name character varying," +
+        "caplet_type character varying," +
+        " volatility_type character varying," +
+        "  caplet_index character varying," +
+        "  day_count_convention character varying," +
+        " tenor_code character varying," +
+        " discount_curve character varying," +
+        " forward_curve character varying" +
+        ")"
+        + "WITH (OIDS=FALSE);"
+        + "ALTER TABLE public.caplet_core OWNER TO postgres;" + ";";
 
     fields.put("CAPLET_NAME", "CAPLET_NAME".toLowerCase());
     fields.put("CAPLET_TYPE", "CAPLET_TYPE".toLowerCase());

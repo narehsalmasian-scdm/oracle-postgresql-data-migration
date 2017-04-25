@@ -9,6 +9,24 @@ public class BriefInfoData extends AbstractTable{
   public BriefInfoData() {
     tableNameOracle = "BRIEF_INFO_DATA";
     tableNamePostgres = "BRIEF_INFO_DATA".toLowerCase();
+    
+    tableCreaterQuery = "CREATE TABLE" + "public.brief_info_data" + "(" +
+        "id character varying(255) NOT NULL," +
+        "report_file_id character varying(255)," +
+        "as_of_date timestamp without time zone," +
+        "reactivated_count integer," +
+        "matured_count integer," +
+        "new_count integer," +
+        "updated_count integer," +
+        "relisted_count integer," +
+        " delisted_count integer," +
+        " total_input_count integer," +
+        " warning_count integer," +
+        "processed_count integer," +
+        "CONSTRAINT brief_info_data_pkey PRIMARY KEY (id)" +
+        ")"
+        + "WITH (OIDS=FALSE);"
+        + "ALTER TABLE public.brief_info_data OWNER TO postgres;" + ";";
 
     fields.put("ID", "ID".toLowerCase());
     fields.put("REPORT_FILE_ID", "REPORT_FILE_ID".toLowerCase());

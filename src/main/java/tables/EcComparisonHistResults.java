@@ -9,6 +9,19 @@ public class EcComparisonHistResults extends  AbstractTable {
   public EcComparisonHistResults() {
     tableNameOracle = "EC_COMPARISON_HIST_RESULTS";
     tableNamePostgres = "ec_comparison_hist_results";
+    
+    tableCreaterQuery = "CREATE TABLE" + "public.ec_comparison_hist_results" + "(" +
+        "  country character varying NOT NULL," +
+        " sector character varying NOT NULL," +
+        " is_consistent character(1)," +
+        " failure_year_fraction double precision," +
+        " reason character varying," +
+        " flush_timestamp timestamp without time zone NOT NULL,"+
+        "CONSTRAINT ec_comparison_hist_results_pkey PRIMARY KEY (country, sector, flush_timestamp)"+
+        ")"
+        + "WITH (OIDS=FALSE);"
+        + "ALTER TABLE public.ec_comparison_hist_results OWNER TO postgres;" + ";";
+
 
     fields.put("COUNTRY", "COUNTRY".toLowerCase());
     fields.put("SECTOR", "SECTOR".toLowerCase());

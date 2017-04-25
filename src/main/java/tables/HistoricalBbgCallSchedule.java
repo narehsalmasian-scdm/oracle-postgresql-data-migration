@@ -10,6 +10,19 @@ public class HistoricalBbgCallSchedule  extends AbstractTable {
   public HistoricalBbgCallSchedule() {
     tableNameOracle = "HISTORICAL_BBG_CALL_SCHEDULE";
     tableNamePostgres = "historical_bbg_call_schedule";
+    
+    tableCreaterQuery = "CREATE TABLE" + "public.historical_bbg_call_schedule" + "(" +
+        "  id double precision NOT NULL," +
+        "   entity_id character varying," +
+        "  as_of_date timestamp without time zone," +
+        " call_date timestamp without time zone," +
+        " strike double precision," +
+        " is_active character(1)," +
+        "  CONSTRAINT historical_bbg_call_schedule_pkey PRIMARY KEY (id)"+
+        ")"
+        + "WITH (OIDS=FALSE);"
+        + "ALTER TABLE public.historical_bbg_call_schedule OWNER TO postgres;" + ";";
+
 
     fields.put("ID", "ID".toLowerCase());
     fields.put("ENTITY_ID", "ENTITY_ID".toLowerCase());

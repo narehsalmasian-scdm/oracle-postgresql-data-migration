@@ -9,6 +9,30 @@ public class AdjustMO extends AbstractTable {
     tableNameOracle = "ADJUST_MO";
     tableNamePostgres = "adjust_mo";
     
+    tableCreaterQuery = "CREATE TABLE" + " public.adjust_mo " +
+        "("
+        + "id bigint NOT NULL,"+
+       " principal double precision" + ","
+        + "cap double precision" + ","+
+        "floor double precision" + "," +
+        "callable double precision" + "," +
+        "make_whole_call double precision" + "," +
+        "putable double precision" + ","+
+        "extendible double precision" + "," +
+        "extendible_by_default double precision,"+
+        "sinkable double precision,"+
+       " amortizing double precision,"+
+        "inflation double precision,"+
+        "fungible double precision,"+
+        "leg_id character varying(255),"+
+        "payment_date timestamp without time zone,"+
+        "interest character varying(4000)"+
+        ")"
+        + "WITH (OIDS=FALSE);"
+        + "ALTER TABLE public.adjust_mo OWNER TO postgres;" + ";";
+    
+    
+    
     
     fields.clear();
     fields.put("ID", "ID".toLowerCase());

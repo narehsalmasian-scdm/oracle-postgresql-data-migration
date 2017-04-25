@@ -9,6 +9,26 @@ public class AiValidationResults extends AbstractTable {
   public AiValidationResults() {
     tableNameOracle = "AI_VALIDATION_RESULTS";
     tableNamePostgres = "ai_validation_results";
+    
+    
+    tableCreaterQuery = "CREATE TABLE" + "public.ai_validation_results " +
+        "("
+        + " id double precision NOT NULL,"+
+       " tp_id double precision" + ","
+        + "security_id character varying(255)" + ","+
+        "issuer_name character varying(255)" + "," +
+        "diff_historic_ai double precision" + "," +
+        "diff_historic_ai_p double precision" + "," +
+        "current_ai double precision" + ","+
+        "previous_ai double precision" + "," +
+        "current_b_day timestamp(6) without time zone,"+
+        "is_validated character(1),"+
+       "  previous_b_day timestamp(6) without time zone,"+
+        "CONSTRAINT ai_validation_results_pkey PRIMARY KEY (id)"+
+        ")"
+        + "WITH (OIDS=FALSE);"
+        + "ALTER TABLEpublic.ai_validation_results OWNER TO postgres;" + ";";
+    
 
     fields.put("ID", "ID".toLowerCase());
     fields.put("TP_ID", "TP_ID".toLowerCase());

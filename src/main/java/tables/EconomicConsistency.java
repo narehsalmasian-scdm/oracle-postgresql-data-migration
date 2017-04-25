@@ -9,6 +9,20 @@ public class EconomicConsistency extends  AbstractTable {
   public EconomicConsistency() {
     tableNameOracle = "ECONOMIC_CONSISTENCY";
     tableNamePostgres = "economic_consistency";
+    
+    tableCreaterQuery = "CREATE TABLE" + "public.economic_consistency" + "(" +
+        "    id character varying NOT NULL," +
+        " sector character varying," +
+        " country character varying," +
+        " ranking character varying," +
+        " step_2 character varying," +
+        "step_3 character varying,"+
+        "as_of_date timestamp without time zone,"+
+        "  CONSTRAINT economic_consistency_pkey PRIMARY KEY (id)"+
+        ")"
+        + "WITH (OIDS=FALSE);"
+        + "ALTER TABLE public.economic_consistency OWNER TO postgres;" + ";";
+
 
     fields.put("ID", "ID".toLowerCase());
     fields.put("SECTOR", "SECTOR".toLowerCase());

@@ -1,16 +1,16 @@
 package tables;
 
-public class ExportJobSqlDev202 extends  AbstractTable {
+public class ExportJobSqlDev203 extends  AbstractTable {
 
   static {
-    addChildClasses(0, ExportJobSqlDev202.class);
+    addChildClasses(0, ExportJobSqlDev203.class);
   }
 
-  public ExportJobSqlDev202() {
-    tableNameOracle = "EXPORT_JOB_SQLDEV_202";
-    tableNamePostgres = "export_job_sqldev_202";
+  public ExportJobSqlDev203() {
+    tableNameOracle = "EXPORT_JOB_SQLDEV_203";
+    tableNamePostgres = "export_job_sqldev_203";
     
-    tableCreaterQuery = "CREATE TABLE" + "public.export_job_sqldev_202" + "(" +
+    tableCreaterQuery = "CREATE TABLE" + "public.export_job_sqldev_203" + "(" +
         "    process_order double precision," +
         "   duplicate double precision," +
         "   dump_fileid double precision," +
@@ -111,7 +111,7 @@ public class ExportJobSqlDev202 extends  AbstractTable {
 
         ")"
         + "WITH (OIDS=FALSE);"
-        + "ALTER TABLE public.export_job_sqldev_202 OWNER TO postgres;" + ";";
+        + "ALTER TABLE public.export_job_sqldev_203 OWNER TO postgres;" + ";";
     
     
   fields.put("PROCESS_ORDER", "PROCESS_ORDER".toLowerCase());

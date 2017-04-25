@@ -10,6 +10,18 @@ public class ExtensionSchedule extends AbstractTable {
   public ExtensionSchedule() {
     tableNameOracle = "EXTENSION_SCHEDULE";
     tableNamePostgres = "extension_Schedule";
+    
+    tableCreaterQuery = "CREATE TABLE" + "public.extension_schedule" + "(" +
+        "   id character varying," +
+        "   security_id character varying," +
+        "   ext_date timestamp without time zone," +
+        "   ext_type character varying," +
+        "    security_version double precision," +
+        "   is_active character(1)," +
+        "     strike double precision" +
+        ")"
+        + "WITH (OIDS=FALSE);"
+        + "ALTER TABLE public.extension_schedule OWNER TO postgres;" + ";";
 
     fields.put("ID", "ID".toLowerCase());
     fields.put("SECURITY_ID", "SECURITY_ID".toLowerCase());

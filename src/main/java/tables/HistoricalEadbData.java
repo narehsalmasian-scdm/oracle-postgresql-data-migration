@@ -10,6 +10,46 @@ public class HistoricalEadbData extends AbstractTable {
   public HistoricalEadbData() {
     tableNameOracle = "HISTORICAL_EADB_DATA";
     tableNamePostgres = "historical_eadb_data";
+    
+    tableCreaterQuery = "CREATE TABLE" + "public.historical_eadb_data" + "(" +
+        "   id character varying NOT NULL," +
+        "    isin character varying," +
+        "   as_of_date timestamp without time zone," +
+        "     data text," +
+        "     status character varying," +
+        "   asset_name character varying," +
+        "   emergency_collateral character(1)," +
+        "  asset_type character varying," +
+        "  liquidity_class character varying," +
+        " issuer_country character varying," +
+        " maturity timestamp without time zone," +
+        "  orn character varying," +
+        "  sender_code character varying," +
+        "  scb_own_use character varying," +
+        " outstanding_issued_amount double precision," +
+        " issue_date timestamp without time zone," +
+        "   issue_price double precision," +
+        "  reference_market character varying," +
+        "  st_asset_rating character varying," +
+        "    st_asset_rating_issue_date timestamp without time zone," +
+        "  lt_asset_rating character varying," +
+        "  lt_asset_rating_issue_date timestamp without time zone," +
+        "  callable character varying," +
+        "  putable character varying," +
+        " extendible character varying," +
+        "  sinkable character varying," +
+        "  frequency double precision," +
+        "  price_quotation character varying," +
+        "  denomination character varying," +
+        "  ecb_status character varying," +
+        " inflation_linked character varying,"+
+        " coupon_definition character varying,"+
+        "   coupon_rate double precision,"+
+        " CONSTRAINT historical_eadb_data_pkey PRIMARY KEY (id)"+
+        ")"
+        + "WITH (OIDS=FALSE);"
+        + "ALTER TABLE public.historical_eadb_data OWNER TO postgres;" + ";";
+    
 
     fields.put("ID", "ID".toLowerCase());
     fields.put("ISIN", "ISIN".toLowerCase());

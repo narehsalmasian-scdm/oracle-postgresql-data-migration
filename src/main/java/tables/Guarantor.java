@@ -10,6 +10,20 @@ public class Guarantor extends AbstractTable {
   public Guarantor() {
     tableNameOracle = "GUARANTOR";
     tableNamePostgres = "guarantor";
+    
+    tableCreaterQuery = "CREATE TABLE" + "public.guarantor" + "(" +
+        "  id character varying NOT NULL," +
+        "   percentage double precision," +
+        "   reference_entity_id character varying," +
+        "   guarantor_group character varying," +
+        "    code character varying," +
+        "   residence character varying," +
+        "   other_name character varying," +
+        "  pse character varying," +
+        " CONSTRAINT guarantor_pkey PRIMARY KEY (id)"+
+        ")"
+        + "WITH (OIDS=FALSE);"
+        + "ALTER TABLE public.guarantor OWNER TO postgres;" + ";";
 
     fields.put("ID", "ID".toLowerCase());
     fields.put("PERCENTAGE", "PERCENTAGE".toLowerCase());

@@ -9,6 +9,19 @@ public class CcxCore extends AbstractTable {
   public CcxCore() {
     tableNameOracle = "CCX_CORE";
     tableNamePostgres = "ccx_core";
+    
+    tableCreaterQuery = "CREATE TABLE" + "public.ccx_core" + "(" +
+        " id character varying NOT NULL," +
+        " ccx_curve_name character varying," +
+        "  type character varying," +
+        "  forwards_type character varying," +
+        "  day_count_conversion character varying," +
+        "  object character varying," +
+        "  currency character varying," +
+        "CONSTRAINT ccx_core_pkey PRIMARY KEY (id)"+
+        ")"
+        + "WITH (OIDS=FALSE);"
+        + "ALTER TABLE public.ccx_core OWNER TO postgres;" + ";";
 
     fields.put("ID", "ID".toLowerCase());
     fields.put("CCX_CURVE_NAME", "CCX_CURVE_NAME".toLowerCase());

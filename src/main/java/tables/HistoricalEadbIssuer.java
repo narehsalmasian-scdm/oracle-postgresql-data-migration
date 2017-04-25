@@ -10,6 +10,7 @@ public class HistoricalEadbIssuer  extends AbstractTable {
   public HistoricalEadbIssuer() {
     tableNameOracle = "HISTORICAL_EADB_ISSUER";
     tableNamePostgres = "historical_eadb_issuer";
+    
   
   fields.put("ID", "ID".toLowerCase());
   fields.put("EADB_ID", "EADB_ID".toLowerCase());

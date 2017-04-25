@@ -9,6 +9,18 @@ public class CorrelationModelParameters extends AbstractTable {
   public CorrelationModelParameters() {
     tableNameOracle = "CORRELATION_MODEL_PARAMETERS";
     tableNamePostgres = "correlation_model_parameters";
+    
+    tableCreaterQuery = "CREATE TABLE" + "public.correlation_model_parameters" + "(" +
+        "   id double precision NOT NULL," +
+        "   number_of_factors double precision," +
+        "  correlation_decay double precision," +
+        "    name character varying," +
+        "   reference_date date," +
+        "   correlation_model_type character varying," +
+        "CONSTRAINT correlation_model_parameters_pkey PRIMARY KEY (id)"+
+        ")"
+        + "WITH (OIDS=FALSE);"
+        + "ALTER TABLE public.correlation_model_parameters OWNER TO postgres;" + ";";
 
     fields.put("ID", "ID".toLowerCase());
     fields.put("NUMBER_OF_FACTORS", "NUMBER_OF_FACTORS".toLowerCase());

@@ -10,6 +10,27 @@ public class FepPrice extends AbstractTable {
   public FepPrice() {
     tableNameOracle = "FEP_PRICE";
     tableNamePostgres = "fep_price";
+    
+    tableCreaterQuery = "CREATE TABLE" + "public.fep_price" + "(" +
+        "   id double precision NOT NULL," +
+        "    security_id character varying," +
+        "   as_of_date timestamp without time zone," +
+        "    clean_price double precision," +
+        "   accrued_interest double precision," +
+        "   pool_factor double precision," +
+        "  fep_type character varying," +
+        
+         "  clean_price_diss double precision," +
+         "  accrued_interest_diss double precision," +
+         "  warning_code character varying," +
+         "  clean_price_md double precision," +
+         "  accrued_interest_md double precision," +
+         "   clean_price_inflation double precision," +
+         "  accrued_interest_inflation double precision," +
+         " CONSTRAINT fep_price_pkey PRIMARY KEY (id)"+
+        ")"
+        + "WITH (OIDS=FALSE);"
+        + "ALTER TABLE public.fep_price OWNER TO postgres;" + ";";
 
     fields.put("ID", "ID".toLowerCase());
     fields.put("SECURITY_ID", "SECURITY_ID".toLowerCase());

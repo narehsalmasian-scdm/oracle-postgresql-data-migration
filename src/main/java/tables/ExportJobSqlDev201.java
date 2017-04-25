@@ -1,6 +1,6 @@
 package tables;
 
-public class ExportJobSqlDev201 extends  AbstractTable {
+public class ExportJobSqlDev201 extends AbstractTable {
 
   static {
     addChildClasses(0, ExportJobSqlDev201.class);
@@ -9,6 +9,109 @@ public class ExportJobSqlDev201 extends  AbstractTable {
   public ExportJobSqlDev201() {
     tableNameOracle = "EXPORT_JOB_SQLDEV_201";
     tableNamePostgres = "export_job_sqldev_201";
+
+    tableCreaterQuery = "CREATE TABLE" + "public.export_job_sqldev_201" + "(" +
+        "    process_order double precision," +
+        "   duplicate double precision," +
+        "   dump_fileid double precision," +
+        "   dump_position double precision," +
+        "   dump_length double precision," +
+        "   dump_orig_length double precision," +
+        "    dump_allocation double precision," +
+        "    completed_rows double precision," +
+        "   error_count double precision," +
+        "   elapsed_time double precision," +
+        "  object_type_path character varying," +
+        "   object_path_seqno double precision," +
+        "  object_type character varying," +
+        "  in_progress character(1)," +
+        "  object_name character varying," +
+        "  object_long_name character varying," +
+        "   object_schema character varying," +
+        "    original_object_schema character varying," +
+        "   original_object_name character varying," +
+        "     partition_name character varying," +
+        "    subpartition_name character varying," +
+        "    dataobj_num double precision," +
+        "   flags double precision," +
+        "   property double precision," +
+        "  trigflag double precision," +
+        "   creation_level double precision," +
+        "  completion_time timestamp without time zone," +
+        "   object_tablespace character varying," +
+        "   size_estimate double precision," +
+        "  object_row double precision," +
+        "  processing_state character(1)," +
+        "    processing_status character(1)," +
+        "    base_process_order double precision," +
+        "    base_object_type character varying," +
+        "   base_object_name character varying," +
+        "   base_object_schema character varying," +
+        "   ancestor_process_order double precision," +
+        "   domain_process_order double precision," +
+        "    parallelization double precision," +
+        "   unload_method double precision," +
+        "    load_method double precision," +
+        "  granules double precision," +
+        "   scn double precision," +
+        "    grantor character varying," +
+        "  xml_clob text," +
+        "  parent_process_order double precision," +
+        "  name character varying," +
+        "   value_t character varying," +
+        "   value_n double precision," +
+        "    is_default double precision," +
+        "   file_type double precision," +
+        "   user_directory character varying," +
+        "    user_file_name character varying," +
+        "   file_name character varying," +
+        "    extend_size double precision," +
+        "   file_max_size double precision," +
+        "   process_name character varying," +
+        "  last_update timestamp without time zone," +
+        "   work_item character varying," +
+        "  object_number double precision," +
+        "  completed_bytes double precision," +
+        "  total_bytes double precision," +
+        "   metadata_io double precision," +
+        "   data_io double precision," +
+
+        "   cumulative_time double precision," +
+        "    packet_number double precision," +
+        "   instance_id double precision," +
+        "    old_value character varying," +
+        "   seed double precision," +
+        "   last_file double precision," +
+        "     user_name character varying," +
+        "    operation character varying," +
+        "   job_mode character varying," +
+        "  queue_tabnum double precision," +
+        "  control_queue character varying," +
+        "   status_queue character varying," +
+        "    remote_link character varying," +
+        "    version double precision" +
+        "    job_version character varying" +
+        "    db_version character varying," +
+        "    timezone character varying," +
+        "     status character varying," +
+        "    phase double precision," +
+        "   guid bytea," +
+        "  start_time timestamp without time zone," +
+        "    block_size double precision," +
+        "  metadata_buffer_size double precision," +
+        "   data_buffer_size double precision," +
+        "  degree double precision," +
+        "   platform character varying," +
+        "   abort_step double precision," +
+
+        "  instance character varying," +
+        "  cluster_ok double precision," +
+        "  service_name character varying," +
+        "    object_int_oid character varying" +
+
+        ")"
+        + "WITH (OIDS=FALSE);"
+        + "ALTER TABLE public.export_job_sqldev_201 OWNER TO postgres;" + ";";
 
     fields.put("PROCESS_ORDER", "PROCESS_ORDER".toLowerCase());
     fields.put("DUPLICATE", "DUPLICATE".toLowerCase());
@@ -27,7 +130,8 @@ public class ExportJobSqlDev201 extends  AbstractTable {
     fields.put("OBJECT_NAME", "OBJECT_NAME".toLowerCase());
     fields.put("OBJECT_LONG_NAME", "OBJECT_LONG_NAME".toLowerCase());
     fields.put("OBJECT_SCHEMA", "OBJECT_SCHEMA".toLowerCase());
-    fields.put("ORIGINAL_OBJECT_SCHEMA", "ORIGINAL_OBJECT_SCHEMA".toLowerCase());
+    fields.put("ORIGINAL_OBJECT_SCHEMA",
+        "ORIGINAL_OBJECT_SCHEMA".toLowerCase());
     fields.put("ORIGINAL_OBJECT_NAME", "ORIGINAL_OBJECT_NAME".toLowerCase());
     fields.put("PARTITION_NAME", "PARTITION_NAME".toLowerCase());
     fields.put("SUBPARTITION_NAME", "SUBPARTITION_NAME".toLowerCase());
@@ -46,7 +150,8 @@ public class ExportJobSqlDev201 extends  AbstractTable {
     fields.put("BASE_OBJECT_TYPE", "BASE_OBJECT_TYPE".toLowerCase());
     fields.put("BASE_OBJECT_NAME", "BASE_OBJECT_NAME".toLowerCase());
     fields.put("BASE_OBJECT_SCHEMA", "BASE_OBJECT_SCHEMA".toLowerCase());
-    fields.put("ANCESTOR_PROCESS_ORDER", "ANCESTOR_PROCESS_ORDER".toLowerCase());
+    fields.put("ANCESTOR_PROCESS_ORDER",
+        "ANCESTOR_PROCESS_ORDER".toLowerCase());
     fields.put("DOMAIN_PROCESS_ORDER", "DOMAIN_PROCESS_ORDER".toLowerCase());
     fields.put("PARALLELIZATION", "PARALLELIZATION".toLowerCase());
     fields.put("UNLOAD_METHOD", "UNLOAD_METHOD".toLowerCase());
@@ -105,11 +210,6 @@ public class ExportJobSqlDev201 extends  AbstractTable {
     fields.put("CLUSTER_OK", "CLUSTER_OK".toLowerCase());
     fields.put("SERVICE_NAME", "SERVICE_NAME".toLowerCase());
     fields.put("OBJECT_INT_OID", "OBJECT_INT_OID".toLowerCase());
-    
-    
-    
-    
-    
-    
+
   }
 }

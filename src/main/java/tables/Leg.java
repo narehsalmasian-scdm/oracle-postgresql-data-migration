@@ -10,6 +10,41 @@ public class Leg extends AbstractTable {
     tableNameOracle = "LEG";
     tableNamePostgres = "LEG".toLowerCase();
     
+    tableCreaterQuery = "CREATE TABLE" + "public.leg" + "(" +
+        "    id character varying NOT NULL," +
+        "   security_id character varying," +
+        "   type character varying," +
+        "   formula character varying," +
+        "   payment_currency character varying," +
+        "  start_date timestamp without time zone," +
+
+        "     end_date timestamp without time zone," +
+        "  day_count_convention character varying," +
+        "  payment_frequency character varying," +
+        "  payment_distribution character varying," +
+        "  fixing_days_prior double precision," +
+        "  payment_month character varying," +
+
+        "    payment_day double precision," +
+        "    ex_coupon_lag double precision," +
+        "   fixing_method character varying," +
+        "    coupon_usage character varying," +
+        "    first_payment_date timestamp without time zone," +
+        "   floor double precision," +
+
+        "   cap double precision," +
+        "   applicable character(1)," +
+        "  security_version double precision NOT NULL," +
+        "   is_active character(1)," +
+        "  created_date timestamp without time zone," +
+        "  created_by character varying," +
+        "   business_day_convention character varying," +
+        "   is_fpd_resolved character(1)," +
+        "  CONSTRAINT leg_pkey PRIMARY KEY (id, security_version)"+
+        ")"
+        + "WITH (OIDS=FALSE);"
+        + "ALTER TABLE public.leg OWNER TO postgres;" + ";";
+    
 
     fields.put("ID", "ID".toLowerCase());
     fields.put("SECURITY_ID", "SECURITY_ID".toLowerCase());

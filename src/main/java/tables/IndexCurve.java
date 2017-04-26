@@ -10,6 +10,21 @@ public class IndexCurve  extends AbstractTable {
   public IndexCurve() {
     tableNameOracle = "INDEX_CURVE";
     tableNamePostgres = "index_curve";
+    
+    tableCreaterQuery = "CREATE TABLE" + "public.index_curve" + "(" +
+        "  id character varying NOT NULL," +
+        "  index_curve_name character varying," +
+        "  type character varying," +
+        " forwards_type character varying," +
+        "  forwards_fixing_type character varying," +
+        "  forwards_fixing_lag character varying," +
+        "  forwards_ticker character varying," +
+        "  forwards_ticker_lag double precision," +
+        " bloomberg_name character varying,"+
+        " CONSTRAINT index_curve_pkey PRIMARY KEY (id)"+
+        ")"
+        + "WITH (OIDS=FALSE);"
+        + "ALTER TABLE public.index_curve OWNER TO postgres;" + ";";
   
   fields.put("ID", "ID".toLowerCase());
   fields.put("INDEX_CURVE_NAME", "INDEX_CURVE_NAME".toLowerCase());

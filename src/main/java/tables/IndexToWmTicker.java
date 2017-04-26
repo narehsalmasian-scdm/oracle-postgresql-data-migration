@@ -10,6 +10,18 @@ public class IndexToWmTicker extends AbstractTable {
   public IndexToWmTicker() {
     tableNameOracle = "INDEX_TO_WM_TICKER";
     tableNamePostgres = "index_to_wm_ticker";
+    
+    tableCreaterQuery = "CREATE TABLE" + "public.index_to_wm_ticker" + "(" +
+        "   index_name character varying," +
+        "   wm_ticker_name character varying NOT NULL," +
+        "   index_core_version double precision NOT NULL," +
+        "    is_active character varying," +
+        "    created_date timestamp without time zone," +
+        "  created_by character varying," +
+        "  CONSTRAINT index_to_wm_ticker_pkey PRIMARY KEY (index_core_version, wm_ticker_name)"+
+        ")"
+        + "WITH (OIDS=FALSE);"
+        + "ALTER TABLE public.index_to_wm_ticker OWNER TO postgres;" + ";";
   
   fields.put("INDEX_NAME", "INDEX_NAME".toLowerCase());
   fields.put("WM_TICKER_NAME", "WM_TICKER_NAME".toLowerCase());

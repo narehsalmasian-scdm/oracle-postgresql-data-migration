@@ -10,7 +10,27 @@ public class HistoricalEadbIssuer  extends AbstractTable {
   public HistoricalEadbIssuer() {
     tableNameOracle = "HISTORICAL_EADB_ISSUER";
     tableNamePostgres = "historical_eadb_issuer";
-    
+    tableCreaterQuery = "CREATE TABLE" + "public.historical_eadb_issuer" + "(" +
+        "    id character varying," +
+        "   eadb_id character varying," +
+        "   st_issuer_rating character varying," +
+        "   st_issuer_rating_date timestamp without time zone," +
+        " lt_issuer_rating character varying," +
+        " lt_issuer_rating_date timestamp without time zone," +
+        "   code character varying," +
+        "  issuer_name character varying," +
+        "  other_name character varying," +
+        " residence character varying," +
+        "   issuer_group character varying," +
+        " pse character varying,"+
+        "issuer_group_raw character varying,"+
+       
+        "CONSTRAINT historical_eadb_issuer_eadb_id_fkey FOREIGN KEY (eadb_id)"+
+        " REFERENCES public.historical_eadb_data (id) MATCH SIMPLE"+
+        "ON UPDATE NO ACTION ON DELETE NO ACTION"+
+        ")"
+        + "WITH (OIDS=FALSE);"
+        + "ALTER TABLE public.historical_eadb_issuer OWNER TO postgres;" + ";";
   
   fields.put("ID", "ID".toLowerCase());
   fields.put("EADB_ID", "EADB_ID".toLowerCase());
